@@ -1,33 +1,34 @@
 ﻿// В Указанном массиве вещественных чисел найдите разницу между максимальным и минимальным элементом
 
 // Метод для генерации значений элементов массива (с диапазоном от min до max)
-void RandomArrayElement(int[] position, int min, int max)
+void RandomArrayElement(double[] position, int min, int max)
 {
     Random rand = new Random();
     int i = 0;
     while (i < position.Length)
     {
-        position[i] = rand.Next(min, max);
+        position[i] = Convert.ToDouble(rand.Next(min, max) / 10.0);
         i++;
     }
 }
 // Метод для вывода на экран элементов массива
-void PrintArray(int[] position)
+void PrintArray(double[] position)
 {
-    foreach (int element in position)
+    foreach (var element in position)
         Console.Write($"{element} ");
     Console.WriteLine();
 }
 // Вывод на экран разницы между макс и мин
-void SubtractionMaxMin(int a, int b)
+void SubtractionMaxMin(double a, double b)
 {
-    Console.WriteLine($"разница между макс и мин элементами массива равна : {a - b}");
+
+    Console.WriteLine($"разница между макс и мин элементами массива равна : {Math.Round((a - b), 2)}");
 }
 // Метод поиска мин и макс элементов в массиве
-void CountMaxMinElementInArray(int[] mas)
+void CountMaxMinElementInArray(double[] mas)
 {
-    int max = mas[0];
-    int minimum = mas[0];
+    double max = mas[0];
+    double minimum = mas[0];
 
     for (int i = 0; i < mas.Length; i++)
     {
@@ -45,8 +46,8 @@ void CountMaxMinElementInArray(int[] mas)
 }
 Console.Write("Введите длинну массива:");
 int LengthArray = int.Parse(Console.ReadLine());
-int[] array = new int[LengthArray];
+double[] array = new double[LengthArray];
 
-RandomArrayElement(array, 0, 20);
+RandomArrayElement(array, -100, 200);
 PrintArray(array);
 CountMaxMinElementInArray(array);
